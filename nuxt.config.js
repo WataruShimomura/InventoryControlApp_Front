@@ -1,7 +1,7 @@
 export default {
   mode: 'spa',
   router: {
-    base: '/con-zo/'
+    base: '/inv-front/'
   },
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3003'
@@ -20,7 +20,7 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/con-zo/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/inv-front/favicon.ico' }]
   },
   /*
    ** Customize the progress-bar color

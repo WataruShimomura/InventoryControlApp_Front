@@ -1,6 +1,6 @@
-# con-zo
+# inventory-controll-app-front
 
-> con-zo
+> inventory-controll-app-front
 
 ## Build Setup
 

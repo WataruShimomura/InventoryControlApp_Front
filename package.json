@@ -1,7 +1,7 @@
 {
-  "name": "kon-zo",
+  "name": "inventory-controll-app-front",
   "version": "1.0.0",
-  "description": "kon-zo",
+  "description": "inventory-controll-app-front",
   "author": "Koji Sugimoto",
   "private": true,
   "scripts": {
