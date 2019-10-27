@@ -7,6 +7,11 @@
       <div>
         <input v-model="message">
       </div>
+      <div>
+        <button @click="test">
+          test
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,12 +30,19 @@ export default Vue.extend({
   computed: {
     message: {
       get () {
-        console.log('loadTest = ' + sampleModule.loadTest())
         return sampleModule.param1
       },
       set (value :string) {
         sampleModule.addPost(value)
       }
+    }
+  },
+  methods: {
+    test () {
+      alert('loadTest = ' +
+        sampleModule.loadTest().then((obj) => {
+          return obj
+        }))
     }
   }
 })

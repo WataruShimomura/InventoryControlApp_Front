@@ -48,13 +48,16 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/proxy'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
   /*
    ** Build configuration
    */
@@ -64,5 +67,13 @@ export default {
      */
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     extend (config, ctx) {}
+  },
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3003',
+      pathRewrite: {
+        '^/api': '/'
+      }
+    }
   }
 }

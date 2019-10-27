@@ -18,7 +18,8 @@ class Sample extends VuexModule implements ISampleState {
   // API呼び出しのサンプルメソッド
   @Action
   async loadTest() : Promise<String> {
-    const res : String  = await axios.get(process.env.baseUrl + '/test').then((obj) => {
+    const res : String  = await axios.get('/api/test').then((obj) => {
+      console.log('test = '+ obj.data.test)
       return obj.data.test
     })
     return res;
