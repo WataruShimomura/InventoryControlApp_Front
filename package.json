@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "kon-zo",
   "version": "1.0.0",
-  "description": "test",
+  "description": "kon-zo",
   "author": "Koji Sugimoto",
   "private": true,
   "scripts": {
