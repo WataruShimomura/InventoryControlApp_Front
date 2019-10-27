@@ -11,7 +11,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "test": "jest",
-    "api": "npx easymock -p 8080 -d ./api"
+    "api": "npx easymock -p 3003 -d ./api"
   },
   "husky": {
     "hooks": {

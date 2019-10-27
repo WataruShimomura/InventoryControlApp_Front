@@ -3,6 +3,9 @@ export default {
   router: {
     base: '/SampleForTandT/'
   },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3003'
+  },
   /*
    ** Headers of the page
    */
