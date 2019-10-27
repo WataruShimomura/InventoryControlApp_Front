@@ -25,6 +25,7 @@ export default Vue.extend({
   computed: {
     message: {
       get () {
+        console.log('loadTest = ' + sampleModule.loadTest())
         return sampleModule.param1
       },
       set (value :string) {
