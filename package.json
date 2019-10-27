@@ -23,6 +23,7 @@
     "@nuxt/typescript-runtime": "^0.2.1",
     "@nuxtjs/axios": "^5.6.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "bootstrap-vue": "^2.0.4",
     "easymock": "^0.2.29",
     "nuxt": "^2.10.1",
     "vue-loader": "^15.7.1",
