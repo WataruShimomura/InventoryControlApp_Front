@@ -38,9 +38,9 @@ export default Vue.extend({
     }
   },
   methods: {
-    test () {
+    async test () {
       alert('loadTest = ' +
-        sampleModule.loadTest().then((obj) => {
+        await sampleModule.loadTest().then((obj) => {
           return obj
         }))
     }
