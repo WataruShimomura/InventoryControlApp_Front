@@ -1,6 +1,7 @@
 import { VuexModule, Module, Mutation, getModule, Action } from 'vuex-module-decorators'
 import store from "~/store/store";
 import axios from '@/plugins/axios'
+import TestRes from '~/data/TestRes';
 
 export interface ISampleState {
   param1 :string;}
@@ -18,11 +19,11 @@ class Sample extends VuexModule implements ISampleState {
   // API呼び出しのサンプルメソッド
   @Action
   async loadTest() : Promise<String> {
-    const res : String  = await axios.get('/api/test').then((obj) => {
+    const res : TestRes  = await axios.get('/api/test').then((obj) => {
       console.log('test = '+ obj.data.test)
-      return obj.data.test
+      return obj.data
     })
-    return res;
+    return res.test;
   }
 
   @Action
