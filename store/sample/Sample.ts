@@ -2,6 +2,7 @@ import { VuexModule, Module, Mutation, getModule, Action } from 'vuex-module-dec
 import store from "~/store/store";
 import axios from '@/plugins/axios'
 import TestRes from '~/data/TestRes';
+import { TestReq } from '~/data/TestReq';
 
 export interface ISampleState {
   param1 :string;}
@@ -20,7 +21,17 @@ class Sample extends VuexModule implements ISampleState {
   @Action
   async loadTest() : Promise<String> {
     const res : TestRes  = await axios.get('/api/test').then((obj) => {
-      console.log('test = '+ obj.data.test)
+      return obj.data
+    })
+    return res.test;
+  }
+
+  @Action
+  async postTest() : Promise<String> {
+    const req : TestReq = new TestReq()
+    req.name = "wataru"
+    req.value = 15
+    const res : TestRes  = await axios.post('/api/test', req).then((obj) => {
       return obj.data
     })
     return res.test;
