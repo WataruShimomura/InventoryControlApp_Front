@@ -7,7 +7,7 @@
       </nuxt-link>
     </div>
     <div>
-      <nuxt-link to="one">
+      <nuxt-link to="inventory/stocklist">
         to One
       </nuxt-link>
     </div>

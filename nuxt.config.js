@@ -1,7 +1,7 @@
 export default {
   mode: 'spa',
   router: {
-    base: '/inv-front/'
+    base: '/index_vue/'
   },
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3003'
@@ -20,7 +20,7 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/inv-front/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/index_vue/favicon.ico' }]
   },
   /*
    ** Customize the progress-bar color
