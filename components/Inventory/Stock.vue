@@ -20,15 +20,12 @@
 
 <script lang='ts'>
 import Vue from 'vue'
-export class StockProps {
-  name :String = '';
-  id :String = '';
-  stockNum :Number = 0;
-}
+import Stock from '@/data/Stock'
+
 export default Vue.extend({
   props: {
     prop: {
-      type: StockProps,
+      type: Stock,
       default: {}
     }
   }
