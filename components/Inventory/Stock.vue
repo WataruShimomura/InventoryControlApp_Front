@@ -6,7 +6,7 @@
     <dev class="name" style="width:60px;text-align:center">
       {{ prop.stockNum }}個
     </dev>
-    <b-button class="contoller" variant="outline-primary">
+    <b-button class="contoller" variant="outline-primary" @click="addStock(prop.stockNum,prop.id)">
       ＋１
     </b-button>
     <b-button class="contoller" variant="outline-primary">
@@ -27,6 +27,11 @@ export default Vue.extend({
     prop: {
       type: Stock,
       default: {}
+    }
+  },
+  methods: {
+    addStock (id :number) {
+      console.log(id)
     }
   }
 })

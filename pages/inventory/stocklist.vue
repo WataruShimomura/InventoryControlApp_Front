@@ -10,7 +10,7 @@
     </h3>
     <div class="stocks">
       <b-card-group class="stocks">
-        <stock v-for="stock in apiCall()" :key="stock.id" :prop="stock" />
+        <stock v-for="stock in getStocks" :key="stock.id" :prop="stock" />
       </b-card-group>
     </div>
   </div>
@@ -25,14 +25,14 @@ export default Vue.extend({
   components: {
     Stock
   },
-  methods: {
-    async apiCall () {
-      const res = await inventoryModule.stockGet().then((obj) => {
-        return obj
-      })
-      console.log(res)
-      return res
+  computed: {
+    getStocks () {
+      return inventoryModule.stocks
     }
+  },
+  async asyncData () {
+    const stocks = await inventoryModule.stockGet()
+    return stocks
   }
 })
 // export default {
