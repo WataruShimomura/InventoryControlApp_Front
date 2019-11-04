@@ -5,6 +5,7 @@ import TestRes from '~/data/TestRes';
 import { TestReq } from '~/data/TestReq';
 import Stock from '~/data/Stock';
 import ChangeReq from '~/data/ChangeReq';
+import { tsParameterProperty, objectExpression } from '@babel/types';
 
 export interface InventoryState {
    stocks:Array<Stock>;
@@ -25,9 +26,18 @@ export interface InventoryState {
     }
 
     @Mutation
-    changeStockNum(id :number, addNum : number){
+    changeStockNum(ids :number, addNum : number){
       // stocksの、対象となるidのオブジェクトを取得する
       // そいつのstockNumを加算する
+      const stockNums = this.stocks.find((v) => v.id === ids)
+      console.log(stockNums)
+
+      // stockNums.stockNum = stockNums.stockNum + addNum;
+    }
+
+    @Mutation
+    deleteStockExe(ids :number){
+
     }
 
   @Action
@@ -39,13 +49,19 @@ export interface InventoryState {
     this.changeStocks(res)
   }
   @Action
-  async plus1Stock(id : number){
+  async addStock (id : number,chNum : number){
     const request = new ChangeReq()
     request.id = id
-    request.sumValue = 1
+    request.sumValue = chNum
     await axios.post('/api/inventory/change', request)
-    this.changeStockNum(id, 1)
-
+    this.changeStockNum(id, chNum)
+  }
+  @Action
+  async deleteStock (id : number){
+    const request = new ChangeReq()
+    request.id = id
+    await axios.post('/api/inventory/delete', request)
+    this.deleteStockExe(id)
   }
 
   }
