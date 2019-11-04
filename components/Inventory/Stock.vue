@@ -15,13 +15,14 @@
     <b-button variant="danger" @click="deleteStock(prop.id)">
       消去
     </b-button>
-    <b-button v-b-modal.modal-1>
+    <b-button @click="modalShow = !modalShow">
       編集
     </b-button>
 
-    <b-modal id="modal-1" title="在庫情報編集">
+    <!-- <b-modal :id="'modal-'+ prop.id" title="在庫情報編集"> -->
+    <b-modal v-model="modalShow" title="在庫情報編集">
       <p class="my-4">
-        名前 在庫 消去
+        {{ prop.name }}
       </p>
     </b-modal>
   </p>
@@ -37,6 +38,11 @@ export default Vue.extend({
     prop: {
       type: Stock,
       default: {}
+    }
+  },
+  data () {
+    return {
+      modalShow: false
     }
   },
   methods: {
