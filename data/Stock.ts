@@ -1,5 +1,5 @@
 export default class Stock {
-  id? :Number
+  id? :number
   name? :String
-  stockNum? :Number
+  stockNum? :number
 }

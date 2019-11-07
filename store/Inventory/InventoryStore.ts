@@ -4,14 +4,15 @@ import axios from '@/plugins/axios'
 import TestRes from '~/data/TestRes';
 import { TestReq } from '~/data/TestReq';
 import Stock from '~/data/Stock';
-import ChangeReq from '~/data/ChangeReq';
+import { ChangeReq } from '~/data/ChangeReq';
 import { tsParameterProperty, objectExpression } from '@babel/types';
+import AddStockPayload from '@/data/AddStockPayload'
 
 export interface InventoryState {
    stocks:Array<Stock>;
 }
 
-  @Module({dynamic: true, store, namespaced: true, name: 'sampleStore' })
+  @Module({dynamic: true, store, namespaced: true, name: 'InventoryStore' })
   class InventoryStore extends VuexModule implements InventoryState {
     stocks = [new Stock()];
 
@@ -26,13 +27,13 @@ export interface InventoryState {
     }
 
     @Mutation
-    changeStockNum(ids :number, addNum : number){
-      // stocksの、対象となるidのオブジェクトを取得する
-      // そいつのstockNumを加算する
-      const stockNums = this.stocks.find((v) => v.id === ids)
-      console.log(stockNums)
-
-      // stockNums.stockNum = stockNums.stockNum + addNum;
+    changeStockNum(stock :AddStockPayload){
+      const index = this.stocks.findIndex((tag) =>{
+        return tag.id === stock.id
+      })
+      console.log(index)
+      const tag = this.stocks[index]
+      tag.stockNum = tag.stockNum + stock.sumValue
     }
 
     @Mutation
@@ -49,12 +50,9 @@ export interface InventoryState {
     this.changeStocks(res)
   }
   @Action
-  async addStock (id : number,chNum : number){
-    const request = new ChangeReq()
-    request.id = id
-    request.sumValue = chNum
-    await axios.post('/api/inventory/change', request)
-    this.changeStockNum(id, chNum)
+  async addStock (order : AddStockPayload){
+    await axios.post('/api/inventory/change', order)
+    this.changeStockNum(order)
   }
   @Action
   async deleteStock (id : number){

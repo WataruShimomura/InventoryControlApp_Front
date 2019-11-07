@@ -30,6 +30,7 @@
 
 <script lang='ts'>
 import Vue from 'vue'
+import AddStockPayload from '@/data/AddStockPayload'
 import Stock from '@/data/Stock'
 import { inventoryModule } from '@/store/Inventory/InventoryStore'
 
@@ -47,7 +48,10 @@ export default Vue.extend({
   },
   methods: {
     changeStock (id :number, chNum : number) {
-      return inventoryModule.addStock(id, chNum)
+      const order = new AddStockPayload()
+      order.id = id
+      order.sumValue = chNum
+      return inventoryModule.addStock(order)
     },
     deleteStock (id :number) {
       return inventoryModule.deleteStock(id)
