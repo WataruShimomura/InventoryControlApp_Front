@@ -1,4 +1,4 @@
 export default class AddStockPayload {
-  id? : number
-  sumValue? : number
+  id : number = 0
+  sumValue : number = 0
 }
