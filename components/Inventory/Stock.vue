@@ -73,7 +73,10 @@ export default Vue.extend({
   props: {
     prop: {
       type: StockPayload,
-      default: {}
+      // default: {}
+      default: () => {
+        return new StockPayload()
+      }
     }
   },
   data () {
@@ -96,17 +99,18 @@ export default Vue.extend({
     deleteStock (id :number) {
       return inventoryModule.deleteStock(id)
     },
-    onSubmit (evt) {
-      evt.preventDefault()
+    onSubmit () {
+      // evt.preventDefault()
       const order = new StockPayload()
+      order.id = this.prop.id
       order.name = this.form.name
       order.stockNum = this.form.stockNum
       // console.log(order)
       return inventoryModule.upDateStock(order)
       // alert(JSON.stringify(this.form))
     },
-    onReset (evt) {
-      evt.preventDefault()
+    onReset () {
+      // evt.preventDefault()
       // Reset our form values
       this.form.name = ''
       this.form.stockNum = 0

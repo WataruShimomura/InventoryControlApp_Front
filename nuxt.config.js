@@ -71,7 +71,9 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://localhost:3003',
+      // easymocで実験時に使用
+      // target: 'http://localhost:3003',
+      target: 'http://localhost:8080',
       pathRewrite: {
         '^/api': '/'
       }

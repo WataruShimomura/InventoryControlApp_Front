@@ -4,6 +4,8 @@ import axios from '@/plugins/axios'
 import AddStockPayload from '@/data/AddStockPayload'
 import StockPayload from '~/data/StockPayload';
 import '@/pages/inventory/stocklist'
+import EntryStockPayload from '~/data/EntryStockPayload';
+import IdSpecifiedPayload from '~/data/IdSpecifiedPayload';
 
 export interface InventoryState {
    stocks:Array<StockPayload>;
@@ -45,11 +47,12 @@ export interface InventoryState {
       this.stocks.splice(index,1)
     }
 
-    @Mutation
-    entryStockExe(newStock :StockPayload){
-      console.log(newStock)
-      this.stocks.push(newStock)
-    }
+    //登録メソッドの画面遷移をなくす際に実装
+    // @Mutation
+    // entryStockExe(newStock :StockPayload){
+    //   console.log(newStock)
+    //   this.stocks.push(newStock)
+    // }
 
     @Mutation
     upDateStockExe(stock :StockPayload){
@@ -65,6 +68,10 @@ export interface InventoryState {
 
   @Action
   async stockGet(){
+    // moc使用時に変える
+    // const res : Array<StockPayload>  = await axios.get('/api/inventory/stock').then((obj) => {
+    //   return obj.data
+    // })
     const res : Array<StockPayload>  = await axios.get('/api/inventory/stock').then((obj) => {
       return obj.data
     })
@@ -77,18 +84,31 @@ export interface InventoryState {
     this.changeStockNum(order)
   }
   @Action
-  async entryStock (order : StockPayload){
+  async entryStock (order : EntryStockPayload){
     await axios.post('/api/inventory/entry', order)
-    this.entryStockExe(order)
+    this.stockGet();
+    //登録メソッドの画面遷移をなくす際に実装
+    // this.entryStockExe(order)
   }
   @Action
   async deleteStock (id : number){
-    await axios.post('/api/inventory/delete', id)
+    // moc使用時に変える
+    // await axios.post('/api/inventory/update', id)
+    const order = new IdSpecifiedPayload
+    order.id = id
+    await axios.post('/api/inventory/delete', order)
     this.deleteStockExe(id)
   }
   @Action
   async upDateStock (order : StockPayload){
+    // moc使用時に変える
+    // await axios.post('/api/inventory/update', order)
+    const orderSumValue = new AddStockPayload
+    orderSumValue.id = order .id
+    orderSumValue.sumValue = order.stockNum
     await axios.post('/api/inventory/update', order)
+    axios.post('/api/inventory/updatestock', orderSumValue)
+
     this.upDateStockExe(order)
   }
 
